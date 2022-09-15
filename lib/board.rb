@@ -16,4 +16,13 @@ class Board
       end
     end
   end
+
+  def display
+    puts(@board.each_slice(8).map do |row|
+      row.join(' | ')
+    end.join("\n#{'-' * 37}\n"))
+  end
 end
+
+board = Board.new
+board.display
