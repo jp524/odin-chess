@@ -10,19 +10,19 @@ class Board
   def create_board
     columns = %w[a b c d e f g h]
     rows = (1..8).to_a
-    columns.each do |column|
-      rows.each do |row|
+    rows.each do |row|
+      columns.each do |column|
         @board << "#{column}#{row}"
       end
     end
   end
 
   def display
-    puts(@board.each_slice(8).map do |row|
+    puts(@board.each_slice(8).reverse_each.map do |row|
       row.join(' | ')
     end.join("\n#{'-' * 37}\n"))
   end
 end
 
-board = Board.new
-board.display
+# board = Board.new
+# board.display
