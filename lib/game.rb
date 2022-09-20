@@ -12,7 +12,9 @@ class Game
   end
 
   def display
-    @board.display(@player_w.positions, @player_b.positions)
+    @board.place_pieces(@player_w.positions)
+    @board.place_pieces(@player_b.positions)
+    @board.display
   end
 end
 
