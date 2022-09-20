@@ -12,8 +12,8 @@ class Game
   end
 
   def display
-    @board.place_pieces(@player_w.positions)
-    @board.place_pieces(@player_b.positions)
+    @board.place_pieces(@player_w.positions, @player_w.color)
+    @board.place_pieces(@player_b.positions, @player_b.color)
     @board.display
   end
 end

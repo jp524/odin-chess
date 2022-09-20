@@ -2,10 +2,11 @@
 
 # Contains the current position on the board of a player's chess pieces
 class Player
-  attr_reader :positions
+  attr_reader :positions, :color
 
   def initialize(color)
-    case color
+    @color = color
+    case @color
     when 'W'
       @positions = { R1: 'a1', N1: 'b1', B1: 'c1', Q1: 'd1', K1: 'e1', B2: 'f1', N2: 'g1', R2: 'h1',
                      P1: 'a2', P2: 'b2', P3: 'c2', P4: 'd2', P5: 'e2', P6: 'f2', P7: 'g2', P8: 'h2' }
