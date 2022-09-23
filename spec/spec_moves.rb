@@ -95,4 +95,20 @@ describe Moves do
       end
     end
   end
+
+  describe '#pawn' do
+    context 'when starting square "f2" is given for a white pawn' do
+      it 'returns an array containing 2 possible finish squares' do
+        result = moves.pawn('f2', 'W')
+        expect(result.length).to eq(2)
+      end
+    end
+
+    context 'when starting square "c4" is given for a white pawn' do
+      it 'returns an array containing 1 possible finish square' do
+        result = moves.pawn('c4', 'W')
+        expect(result.length).to eq(1)
+      end
+    end
+  end
 end

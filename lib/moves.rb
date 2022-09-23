@@ -60,6 +60,7 @@ class Moves
   end
 
   def knight(start)
+    # To be implemented: checking if empty square for the first jump
     coord = square_to_coord(start)
     y, x = coord
 
@@ -71,6 +72,32 @@ class Moves
              [y - 1, x - 2],
              [y + 1, x + 2],
              [y - 1, x + 2]]
+    filter_sort_moves(moves)
+    moves.map { |move| coord_to_square(move) }
+  end
+
+  def pawn(start, color)
+    if start[1] == '2' && color == 'W'
+      pawn_double(start)
+    elsif start[1] == '7' && color == 'B'
+      pawn_double(start)
+    else
+      pawn_single(start)
+    end
+  end
+
+  def pawn_double(start)
+    coord = square_to_coord(start)
+    y, x = coord
+    moves = [[y + 1, x], [y + 2, x]]
+    filter_sort_moves(moves)
+    moves.map { |move| coord_to_square(move) }
+  end
+
+  def pawn_single(start)
+    coord = square_to_coord(start)
+    y, x = coord
+    moves = [[y + 1, x]]
     filter_sort_moves(moves)
     moves.map { |move| coord_to_square(move) }
   end
@@ -99,6 +126,3 @@ class Moves
     "#{column}#{row}"
   end
 end
-
-# moves = Moves.new
-# p moves.bishop('d4')
