@@ -22,6 +22,22 @@ class Moves
     moves.map { |move| coord_to_square(move) }
   end
 
+  def rook(start)
+    coord = square_to_coord(start)
+    y, x = coord
+    moves = []
+    # Removing ability to leap over other pieces to be implemented later
+
+    (0..7).each do |i|
+      moves << [y, i]
+      moves << [i, x]
+    end
+
+    moves.reject! { |move| move == coord }
+    moves.sort_by! { |move| move }
+    moves.map { |move| coord_to_square(move) }
+  end
+
   def filter_sort_moves(moves)
     moves.filter! { |move| (0..7).include?(move[0]) && (0..7).include?(move[1]) }
     moves.sort_by! { |move| move }
@@ -46,3 +62,6 @@ class Moves
     "#{column}#{row}"
   end
 end
+
+# moves = Moves.new
+# p moves.rook('d5')

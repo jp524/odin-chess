@@ -38,4 +38,20 @@ describe Moves do
       end
     end
   end
+
+  describe '#rook' do
+    context 'when starting square "d5" is given' do
+      it 'returns an array containing 14 possible finish squares' do
+        result = moves.rook('d5')
+        expect(result.length).to eq(14)
+      end
+    end
+
+    context 'when starting square "a1" is given' do
+      it 'returns an array containing 14 possible finish squares' do
+        result = moves.rook('a1')
+        expect(result.length).to eq(14)
+      end
+    end
+  end
 end
