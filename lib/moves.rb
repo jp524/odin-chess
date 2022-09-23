@@ -1,10 +1,10 @@
 # frozen_string_literal: false
 
+require_relative '../lib/conversion'
+
 # Generates the available moves on the board for a chess piece
 class Moves
-  def initialize
-    @columns = %w[a b c d e f g h]
-  end
+  include Conversion
 
   def king(start)
     # start will be a valid square, such as 'a3'
@@ -106,23 +106,5 @@ class Moves
     moves.filter! { |move| (0..7).include?(move[0]) && (0..7).include?(move[1]) }
     moves.sort_by! { |move| move }
     moves
-  end
-
-  def square_to_coord(square)
-    column = square[0]
-    row = square[1].to_i
-    row_index = row - 1
-    column_index = @columns.index(column)
-
-    [row_index, column_index]
-  end
-
-  def coord_to_square(coord)
-    row_index = coord[0]
-    column_index = coord[1]
-    row = row_index + 1
-    column = @columns[column_index]
-
-    "#{column}#{row}"
   end
 end

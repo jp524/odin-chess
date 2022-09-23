@@ -1,7 +1,11 @@
 # frozen_string_literal: false
 
+require_relative './conversion'
+
 # Contains the 8x8 chess board
 class Board
+  include Conversion
+
   def initialize
     @board = Array.new(8) { Array.new(8) { ' ' } }
     @symbols_w = { 'R' => '♖',
@@ -34,13 +38,9 @@ class Board
   end
 
   def place_pieces(positions, color)
-    columns = %w[a b c d e f g h]
     positions.each_pair do |piece, square|
-      column = square[0]
-      row = square[1].to_i
-      row_index = row - 1
-      column_index = columns.index(column)
       piece_symbol = convert_to_unicode(piece.to_s[0], color)
+      row_index, column_index = square_to_coord(square)
       @board[row_index][column_index] = piece_symbol
     end
   end
