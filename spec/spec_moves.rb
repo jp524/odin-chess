@@ -54,4 +54,20 @@ describe Moves do
       end
     end
   end
+
+  describe '#bishop' do
+    context 'when starting square "d4" is given' do
+      it 'returns an array containing 13 possible finish squares' do
+        result = moves.bishop('d4')
+        expect(result.length).to eq(13)
+      end
+    end
+
+    context 'when starting square "a1" is given' do
+      it 'returns an array containing 7 possible finish squares' do
+        result = moves.bishop('a1')
+        expect(result.length).to eq(7)
+      end
+    end
+  end
 end

@@ -38,6 +38,22 @@ class Moves
     moves.map { |move| coord_to_square(move) }
   end
 
+  def bishop(start)
+    coord = square_to_coord(start)
+    y, x = coord
+    moves = []
+    # Removing ability to leap over other pieces to be implemented later
+    (0..7).each do |i|
+      moves << [y - i, x - i]
+      moves << [y + i, x + i]
+      moves << [y - i, x + i]
+      moves << [y + i, x - i]
+    end
+    moves.reject! { |move| move == coord }
+    filter_sort_moves(moves)
+    moves.map { |move| coord_to_square(move) }
+  end
+
   def filter_sort_moves(moves)
     moves.filter! { |move| (0..7).include?(move[0]) && (0..7).include?(move[1]) }
     moves.sort_by! { |move| move }
@@ -64,4 +80,4 @@ class Moves
 end
 
 # moves = Moves.new
-# p moves.rook('d5')
+# p moves.bishop('d4')
