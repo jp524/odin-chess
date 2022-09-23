@@ -70,4 +70,29 @@ describe Moves do
       end
     end
   end
+
+  describe '#queen' do
+    context 'when starting square "d4" is given' do
+      it 'returns an array containing 27 possible finish squares' do
+        result = moves.queen('d4')
+        expect(result.length).to eq(27)
+      end
+    end
+  end
+
+  describe '#knight' do
+    context 'when starting square "d5" is given' do
+      it 'returns an array containing 8 possible finish squares' do
+        result = moves.knight('d5')
+        expect(result.length).to eq(8)
+      end
+    end
+
+    context 'when starting square "a1" is given' do
+      it 'returns an array containing 2 possible finish squares' do
+        result = moves.knight('a1')
+        expect(result.length).to eq(2)
+      end
+    end
+  end
 end

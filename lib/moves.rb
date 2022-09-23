@@ -54,6 +54,27 @@ class Moves
     moves.map { |move| coord_to_square(move) }
   end
 
+  def queen(start)
+    # Removing ability to leap over other pieces to be implemented later
+    rook(start) + bishop(start)
+  end
+
+  def knight(start)
+    coord = square_to_coord(start)
+    y, x = coord
+
+    moves = [[y + 2, x - 1],
+             [y - 2, x - 1],
+             [y + 2, x + 1],
+             [y - 2, x + 1],
+             [y + 1, x - 2],
+             [y - 1, x - 2],
+             [y + 1, x + 2],
+             [y - 1, x + 2]]
+    filter_sort_moves(moves)
+    moves.map { |move| coord_to_square(move) }
+  end
+
   def filter_sort_moves(moves)
     moves.filter! { |move| (0..7).include?(move[0]) && (0..7).include?(move[1]) }
     moves.sort_by! { |move| move }
