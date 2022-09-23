@@ -4,6 +4,18 @@
 class Board
   def initialize
     @board = Array.new(8) { Array.new(8) { ' ' } }
+    @symbols_w = { 'R' => '♖',
+                   'N' => '♘',
+                   'B' => '♗',
+                   'Q' => '♕',
+                   'K' => '♔',
+                   'P' => '♙' }
+    @symbols_b = { 'R' => '♜',
+                   'N' => '♞',
+                   'B' => '♝',
+                   'Q' => '♛',
+                   'K' => '♚',
+                   'P' => '♟' }
   end
 
   def display
@@ -14,6 +26,11 @@ class Board
       puts "   #{'-' * 32}"
     end
     puts "     #{%w[a b c d e f g h].join('   ')}"
+  end
+
+  def send_to_board(player_w, player_b)
+    place_pieces(player_w.positions, player_w.color)
+    place_pieces(player_b.positions, player_b.color)
   end
 
   def place_pieces(positions, color)
@@ -29,23 +46,11 @@ class Board
   end
 
   def convert_to_unicode(piece, color)
-    symbols_w = { 'R' => '♖',
-                  'N' => '♘',
-                  'B' => '♗',
-                  'Q' => '♕',
-                  'K' => '♔',
-                  'P' => '♙' }
-    symbols_b = { 'R' => '♜',
-                  'N' => '♞',
-                  'B' => '♝',
-                  'Q' => '♛',
-                  'K' => '♚',
-                  'P' => '♟' }
     case color
     when 'W'
-      symbols_w[piece]
+      @symbols_w[piece]
     when 'B'
-      symbols_b[piece]
+      @symbols_b[piece]
     end
   end
 end
