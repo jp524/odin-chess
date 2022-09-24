@@ -12,4 +12,10 @@ class Piece
     @square = square
     @color = nil
   end
+
+  def piece_exists?(name, square)
+    return true if @name == name && @square == square
+
+    false
+  end
 end

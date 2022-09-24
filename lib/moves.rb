@@ -109,5 +109,5 @@ class Moves
   end
 end
 
-moves = Moves.new
-p moves.rook('c3')
+# moves = Moves.new
+# p moves.rook('c3')

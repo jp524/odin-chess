@@ -13,4 +13,22 @@ describe Board do
       end
     end
   end
+
+  describe '#piece_exists?' do
+    subject(:board) { described_class.new }
+
+    context "when 'P' and 'a2' are given as argument" do
+      it 'returns true' do
+        result = board.piece_exists?('P', 'a2')
+        expect(result).to be(true)
+      end
+    end
+
+    context "when 'B' and 'a1' are given as argument" do
+      it 'returns false' do
+        result = board.piece_exists?('B', 'a1')
+        expect(result).to be(false)
+      end
+    end
+  end
 end

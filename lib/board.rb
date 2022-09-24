@@ -78,6 +78,13 @@ class Board
       end
     end
   end
+
+  def piece_exists?(name, square)
+    @board.each do |piece|
+      return true if piece.piece_exists?(name, square)
+    end
+    false
+  end
 end
 
 board = Board.new
