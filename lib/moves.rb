@@ -108,3 +108,6 @@ class Moves
     moves
   end
 end
+
+moves = Moves.new
+p moves.rook('c3')
