@@ -23,19 +23,54 @@ class Moves
   end
 
   def rook(start)
-    coord = square_to_coord(start)
-    y, x = coord
-    moves = []
     # Removing ability to leap over other pieces to be implemented later
 
-    (0..7).each do |i|
-      moves << [y, i]
-      moves << [i, x]
-    end
+    left = rook_left(start)
+    right = rook_right(start)
+    top = rook_top(start)
+    bottom = rook_bottom(start)
 
-    moves.reject! { |move| move == coord }
-    moves.sort_by! { |move| move }
-    moves.map { |move| coord_to_square(move) }
+    { left: left, right: right, top: top, bottom: bottom }
+  end
+
+  def rook_left(start)
+    coord = square_to_coord(start)
+    y, x = coord
+    left = []
+    (y - 1).downto(0).each do |i|
+      left << [i, x]
+    end
+    left.map { |move| coord_to_square(move) }
+  end
+
+  def rook_right(start)
+    coord = square_to_coord(start)
+    y, x = coord
+    right = []
+    (y + 1..7).each do |i|
+      right << [i, x]
+    end
+    right.map { |move| coord_to_square(move) }
+  end
+
+  def rook_top(start)
+    coord = square_to_coord(start)
+    y, x = coord
+    top = []
+    (x + 1..7).each do |i|
+      top << [y, i]
+    end
+    top.map { |move| coord_to_square(move) }
+  end
+
+  def rook_bottom(start)
+    coord = square_to_coord(start)
+    y, x = coord
+    bottom = []
+    (x - 1).downto(0).each do |i|
+      bottom << [y, i]
+    end
+    bottom.map { |move| coord_to_square(move) }
   end
 
   def bishop(start)
